@@ -55,8 +55,8 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
-            KC_Q, KC_W, LT(5, KC_F), KC_P, KC_B,
-              KC_J, KC_L, KC_U, DE_Y, DE_UNDS,
+            KC_Q, LT(7,KC_W), LT(5, KC_F), KC_P, KC_B,
+              KC_J, KC_L, LT(5, KC_U), LT(7, DE_Y), DE_UNDS,
             LALT_T(KC_A), LCTL_T(KC_R), LSFT_T(KC_S), LT(4,KC_T), KC_G,
               KC_M, LT(4,KC_N), LSFT_T(KC_E), LCTL_T(KC_I), LALT_T(KC_O),
             LT(8, DE_Z), KC_X, KC_C, LT(2, KC_D), KC_V,
@@ -103,7 +103,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS, KC_TRNS
             ),
 	[6] = LAYOUT_split_3x5_2(KC_PSLS, KC_7, KC_8, KC_9, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0, KC_1, KC_2, KC_3, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_TRNS, KC_PAST, KC_4, KC_5, KC_6, KC_PEQL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
-	[7] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_COLN, KC_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL, KC_TRNS, KC_PERC, KC_SLSH, KC_ENT, KC_TRNS, DF(1), KC_LGUI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_EXLM, KC_TRNS, DF(0), KC_TRNS, RALT_T(KC_COMM), RCTL_T(KC_DOT), QK_BOOT, KC_TRNS, KC_TAB, KC_NO, KC_TRNS),
+	[7] = LAYOUT_split_3x5_2(
+            KC_MEDIA_PREV_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK, KC_NO,
+              KC_NO, KC_MS_BTN1,     KC_MS_BTN3,     KC_MS_BTN2, KC_NO,
+            KC_NO,  KC_AUDIO_MUTE,  KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP, KC_TRNS,
+              KC_NO, KC_MS_LEFT,     KC_MS_UP,       KC_MS_DOWN,     KC_MS_RIGHT,
+            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
+              KC_NO, KC_MS_ACCEL0,   KC_MS_WH_UP,    KC_MS_WH_DOWN, KC_NO,
+
+            KC_MS_ACCEL2, KC_NO,
+            KC_NO, KC_NO
+            ),
 
 	[8] = LAYOUT_split_3x5_2(
             KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
