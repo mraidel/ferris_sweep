@@ -330,7 +330,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_NO, KC_1, TD(TD_2_COMM), TD(TD_3_EQL), KC_COMM,
 
             KC_TRNS, KC_TRNS,
-            KC_TRNS, KC_TRNS
+            KC_0, KC_TRNS
             ),
 	[6] = LAYOUT_split_3x5_2(
             KC_NO,          LSFT(DE_UDIA),          LSFT(DE_ODIA),          LSFT(DE_ADIA), KC_NO,
