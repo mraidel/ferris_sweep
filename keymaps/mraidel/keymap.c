@@ -283,6 +283,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case DE_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
             KC_Q, LT(7,KC_W), LT(5, KC_F), KC_P, KC_B,
@@ -290,15 +311,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             LALT_T(KC_A), LCTL_T(KC_R), LT(6, KC_S), LT(4,KC_T), KC_G,
               KC_M, LT(4,KC_N), LT(6, KC_E), LCTL_T(KC_I), LALT_T(KC_O),
             LT(8, DE_Z), KC_X, KC_C, LT(2, KC_D), KC_V,
-              KC_K, KC_H, KC_COMM, KC_DOT, KC_AMPR,
+              KC_K, LT(2, KC_H), KC_COMM, KC_DOT, KC_AMPR,
             OSL(1), OSM(MOD_LSFT),
               KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
             DE_SS,          DE_UDIA,          DE_ODIA,          DE_ADIA, KC_NO,
               KC_NO, KC_TAB,         DE_LPRN,        DE_LCBR,        DE_LBRC,
-            DE_TILD,        DE_HASH,        DE_PERC,        DE_COLN, KC_NO,
+            LALT_T(DE_EQL),        LCTL_T(DE_HASH),        DE_PERC,        DE_COLN, DE_TILD,
               KC_NO, KC_ESCAPE,      DE_LABK,        DE_DQUO,        DE_QUES,
-            DE_BSLS,        DE_PIPE,        DE_AMPR,        DE_AT, KC_NO,
+            DE_ASTR,        DE_PIPE,        DE_AMPR,        DE_AT, DE_BSLS,
                KC_NO,DE_EURO,        DE_CIRC,        DE_ACUT,        DE_MINS,
 
             KC_NO, KC_NO, KC_ENTER,       KC_DELETE),
@@ -310,7 +331,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
                KC_NO,KC_NO,        DE_DLR,        DE_GRV,        DE_PLUS,
 
-            KC_NO, KC_NO, KC_ENTER,       KC_DELETE),
+            KC_NO, KC_NO, LSFT(KC_ENTER),       KC_DELETE),
 	[3] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UNDS, KC_PIPE, KC_QUOT, KC_TRNS, KC_CIRC, KC_ASTR, KC_AMPR, KC_NO, KC_TRNS, KC_HASH, KC_TILD, KC_SLSH, KC_DQUO, KC_DLR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_BSLS, KC_GRV, KC_TRNS, RGB_RMOD, KC_TRNS, KC_TRNS, RGB_MOD),
 	[4] = LAYOUT_split_3x5_2(
             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
