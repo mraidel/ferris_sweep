@@ -37,12 +37,18 @@ enum {
     TD_7_SLSH,
     TD_8_ASTR,
     TD_9_MINS,
+    TD_6_PLUS,
+    TD_3_EQL,
+    TD_2_COMM,
 };
 
 tap_dance_action_t tap_dance_actions[] = {
     [TD_7_SLSH] = ACTION_TAP_DANCE_DOUBLE(KC_7, DE_SLSH),
     [TD_8_ASTR] = ACTION_TAP_DANCE_DOUBLE(KC_8, DE_ASTR),
     [TD_9_MINS] = ACTION_TAP_DANCE_DOUBLE(KC_9, DE_MINS),
+    [TD_6_PLUS] = ACTION_TAP_DANCE_DOUBLE(KC_6, DE_PLUS),
+    [TD_3_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_3, DE_EQL),
+    [TD_2_COMM] = ACTION_TAP_DANCE_DOUBLE(KC_2, DE_COMM),
 };
 
 
@@ -89,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
               KC_NO, TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
             KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-              KC_TRNS, KC_4, KC_5, KC_6, DE_DOT,
+              KC_TRNS, KC_4, KC_5, TD(TD_6_PLUS), DE_DOT,
             KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-              KC_NO, KC_1, KC_2, KC_3, KC_COMM,
+              KC_NO, KC_1, TD(TD_2_COMM), TD(TD_3_EQL), KC_COMM,
 
             KC_TRNS, KC_TRNS,
             KC_TRNS, KC_TRNS
