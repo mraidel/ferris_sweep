@@ -8,7 +8,6 @@
  * edit it directly.
  */
 
-/*
 void keyboard_post_init_user(void) {
     // Initialize RGB to static black
     rgblight_enable_noeeprom();
@@ -31,7 +30,7 @@ void housekeeping_task_user(void) {
             rgblight_setrgb_at(RGB_BLUE, 0);
             break;
     }
-}*/
+}
 
 void suspend_power_down_user(void) {
     setPinOutput(24);
