@@ -19,27 +19,35 @@ void housekeeping_task_user(void) {
         case 0:
             // Default layer
             rgblight_setrgb_at(RGB_BLACK, 0);
+            rgblight_setrgb_at(RGB_BLACK, 1);
             break;
         case 1:
             rgblight_setrgb_at(RGB_YELLOW, 0);
+            rgblight_setrgb_at(RGB_YELLOW, 1);
             break;
         case 2:
             rgblight_setrgb_at(RGB_RED, 0);
+            rgblight_setrgb_at(RGB_RED, 1);
             break;
         case 3:
             rgblight_setrgb_at(RGB_ORANGE, 0);
+            rgblight_setrgb_at(RGB_ORANGE, 1);
             break;
         case 4:
             rgblight_setrgb_at(RGB_PURPLE, 0);
+            rgblight_setrgb_at(RGB_PURPLE, 1);
             break;
         case 7:
             rgblight_setrgb_at(RGB_GREEN, 0);
+            rgblight_setrgb_at(RGB_GREEN, 1);
             break;
         case 5:
             rgblight_setrgb_at(RGB_BLUE, 0);
+            rgblight_setrgb_at(RGB_BLUE, 1);
             break;
         case 6:
             rgblight_setrgb_at(RGB_AZURE, 0);
+            rgblight_setrgb_at(RGB_AZURE, 1);
             break;
     }
 }
