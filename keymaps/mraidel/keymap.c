@@ -44,16 +44,6 @@ void housekeeping_task_user(void) {
     }
 }
 
-void suspend_power_down_user(void) {
-    setPinOutput(24);
-    writePinHigh(24);
-}
-
-void suspend_wakeup_init_user(void) {
-    setPinOutput(24);
-    writePinHigh(24);
-}
-
 enum {
     TD_7_SLSH,
     TD_8_ASTR,

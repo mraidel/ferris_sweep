@@ -60,3 +60,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_NUM 2
 #undef RGBLED_SPLIT
 #define RGBLED_SPLIT {1, 1}
+#define LED_CAPS_LOCK_PIN 24
+#define LED_PIN_ON_STATE 0
