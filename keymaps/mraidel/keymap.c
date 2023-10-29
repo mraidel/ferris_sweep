@@ -93,6 +93,14 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case LALT_T(DE_EQL):
+    if (record->tap.count && record->event.pressed) {
+      tap_code16(DE_EQL);
+      return false;
+    }
+    break;
+  }
+  switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
       //SEND_STRING(SS_RALT(SS_TAP(X_NONUS_BSLASH)) SS_DELAY(100) SS_RALT(SS_TAP(X_NONUS_BSLASH)) SS_DELAY(100) SS_TAP(X_LEFT));
@@ -308,10 +316,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
             KC_Q, LT(7,KC_W), LT(5, KC_F), KC_P, KC_B,
               KC_J, KC_L, LT(5, KC_U), LT(7, DE_Y), DE_UNDS,
-            LALT_T(KC_A), LCTL_T(KC_R), LT(6, KC_S), LT(4,KC_T), KC_G,
-              KC_M, LT(4,KC_N), LT(6, KC_E), LCTL_T(KC_I), LALT_T(KC_O),
-            LT(8, DE_Z), KC_X, KC_C, LT(2, KC_D), KC_V,
-              KC_K, LT(2, KC_H), KC_COMM, KC_DOT, KC_AMPR,
+            LALT_T(KC_A), LCTL_T(KC_R), LSFT_T(KC_S), LT(4,KC_T), KC_G,
+              KC_M, LT(4,KC_N), LSFT_T(KC_E), LCTL_T(KC_I), LALT_T(KC_O),
+            LT(8, DE_Z), LGUI_T(KC_X), LT(6, KC_C), LT(2, KC_D), KC_V,
+              KC_K, LT(2, KC_H), LT(6, KC_COMM), KC_DOT, KC_AMPR,
             OSL(1), OSM(MOD_LSFT),
               KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
