@@ -20,14 +20,26 @@ void housekeeping_task_user(void) {
             // Default layer
             rgblight_setrgb_at(RGB_BLACK, 0);
             break;
-        case 4:
-            rgblight_setrgb_at(RGB_GREEN, 0);
+        case 1:
+            rgblight_setrgb_at(RGB_YELLOW, 0);
             break;
         case 2:
-            rgblight_setrgb_at(100,100,1, 0);
+            rgblight_setrgb_at(RGB_RED, 0);
             break;
         case 3:
+            rgblight_setrgb_at(RGB_ORANGE, 0);
+            break;
+        case 4:
+            rgblight_setrgb_at(RGB_PURPLE, 0);
+            break;
+        case 7:
+            rgblight_setrgb_at(RGB_GREEN, 0);
+            break;
+        case 5:
             rgblight_setrgb_at(RGB_BLUE, 0);
+            break;
+        case 6:
+            rgblight_setrgb_at(RGB_AZURE, 0);
             break;
     }
 }
@@ -39,7 +51,7 @@ void suspend_power_down_user(void) {
 
 void suspend_wakeup_init_user(void) {
     setPinOutput(24);
-    writePinLow(24);
+    writePinHigh(24);
 }
 
 enum {
