@@ -272,7 +272,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_30:
     if (record->event.pressed) {
-      // SEND_STRING(SS_LSFT(SS_TAP(X_2)) SS_DELAY(100) SS_TAP(X_RBRACKET));
+      SEND_STRING(SS_LSFT("2") SS_DELAY(100) "]");
     }
     break;
     case ST_MACRO_31:
@@ -343,34 +343,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,   KC_NO,    DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
                                                       KC_NO,   KC_NO,     KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
-            KC_NO,          LSFT(DE_UDIA),          LSFT(DE_ODIA),          LSFT(DE_ADIA), KC_NO,
-              KC_NO, LSFT(KC_TAB),         DE_RPRN,        DE_RCBR,        DE_RBRC,
-            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
-              KC_NO, KC_NO,      DE_RABK,        DE_QUOT,        DE_EXLM,
-            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO,
-               KC_NO,KC_NO,        DE_DLR,        DE_GRV,        DE_PLUS,
-
-            KC_NO, KC_NO, LSFT(KC_ENTER),       KC_DELETE),
+            KC_NO, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,   KC_NO, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
+            KC_NO, KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO, KC_NO,        DE_RABK, DE_QUOT, DE_EXLM,
+            KC_NO, KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO, KC_NO,        DE_DLR,  DE_GRV,  DE_PLUS,
+                                                 KC_NO,         KC_NO,   LSFT(KC_ENTER),      KC_DELETE),
 	[3] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UNDS, KC_PIPE, KC_QUOT, KC_TRNS, KC_CIRC, KC_ASTR, KC_AMPR, KC_NO, KC_TRNS, KC_HASH, KC_TILD, KC_SLSH, KC_DQUO, KC_DLR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_BSLS, KC_GRV, KC_TRNS, RGB_RMOD, KC_TRNS, KC_TRNS, RGB_MOD),
 	[4] = LAYOUT_split_3x5_2(
-            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-              KC_NO, KC_HOME,        KC_PGUP,        KC_PGDN,      KC_END,
-            KC_NO, KC_LCTL,       KC_LSFT, KC_NO, KC_NO,
-              KC_NO, KC_LEFT,        KC_UP,          KC_DOWN,        KC_RIGHT,
-            KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO,
-              KC_TRNS, LGUI(LSFT(KC_LEFT)),LGUI(KC_UP),    LGUI(KC_DOWN),  LGUI(LSFT(KC_RIGHT)),
-
-            KC_VOLD, KC_TRNS, KC_TRNS, KC_VOLU),
+            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_HOME,             KC_PGUP,     KC_PGDN,       KC_END,
+            KC_NO,   KC_LCTL, KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_LEFT,             KC_UP,       KC_DOWN,       KC_RIGHT,
+            KC_TRNS, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_TRNS, LGUI(LSFT(KC_LEFT)), LGUI(KC_UP), LGUI(KC_DOWN), LGUI(LSFT(KC_RIGHT)),
+                                       KC_VOLD, KC_TRNS, KC_TRNS, KC_VOLU),
 	[5] = LAYOUT_split_3x5_2(
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-              KC_NO, TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
-            KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-              KC_TRNS, KC_4, KC_5, TD(TD_6_PLUS), DE_DOT,
-            KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-              KC_NO, KC_1, TD(TD_2_COMM), TD(TD_3_EQL), KC_COMM,
-
-            KC_TRNS, KC_TRNS,
-            KC_0, KC_TRNS
+            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,   TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
+            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_4,          KC_5,          TD(TD_6_PLUS), DE_DOT,
+            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,   KC_1,          TD(TD_2_COMM), TD(TD_3_EQL),  KC_COMM,
+                                       KC_TRNS, KC_TRNS,   KC_0,    KC_TRNS
             ),
 	[6] = LAYOUT_split_3x5_2(
             KC_NO,          LSFT(DE_UDIA),          LSFT(DE_ODIA),          LSFT(DE_ADIA), KC_NO,
