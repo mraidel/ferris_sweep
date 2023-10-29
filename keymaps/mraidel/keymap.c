@@ -325,9 +325,9 @@ bool caps_word_press_user(uint16_t keycode) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
-            KC_Q,         LT(7,KC_W),   LT(5, KC_F),  KC_P,        KC_B,            KC_J,   KC_L,        LT(5, KC_U),    LT(7, DE_Y),  DE_UNDS,
+            KC_Q,         LT(7,KC_W),   LT(5, KC_F),  LT(6,KC_P),  KC_B,            KC_J,   LT(6,KC_L),  LT(5, KC_U),    LT(7, DE_Y),  DE_UNDS,
             LALT_T(KC_A), LCTL_T(KC_R), LSFT_T(KC_S), LT(4,KC_T),  KC_G,            KC_M,   LT(4,KC_N),  LSFT_T(KC_E),   LCTL_T(KC_I), LALT_T(KC_O),
-            LT(8, DE_Z),  LGUI_T(KC_X), LT(6, KC_C),  LT(2, KC_D), KC_V,            KC_K,   LT(2, KC_H), LT(6, KC_COMM), KC_DOT,       KC_AMPR,
+            LT(8, DE_Z),  LGUI_T(KC_X), KC_C,         LT(2, KC_D), KC_V,            KC_K,   LT(2, KC_H), KC_COMM,        KC_DOT,       KC_AMPR,
                                                       OSL(1),      OSM(MOD_LSFT),   KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
             DE_SS,          DE_UDIA,         DE_ODIA, DE_ADIA, DE_TILD,   KC_NO,    KC_TAB,    DE_LPRN, DE_LCBR, DE_LBRC,
@@ -401,8 +401,3 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
-
-
-
-
-
