@@ -314,23 +314,15 @@ bool caps_word_press_user(uint16_t keycode) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
-            KC_Q, LT(7,KC_W), LT(5, KC_F), KC_P, KC_B,
-              KC_J, KC_L, LT(5, KC_U), LT(7, DE_Y), DE_UNDS,
-            LALT_T(KC_A), LCTL_T(KC_R), LSFT_T(KC_S), LT(4,KC_T), KC_G,
-              KC_M, LT(4,KC_N), LSFT_T(KC_E), LCTL_T(KC_I), LALT_T(KC_O),
-            LT(8, DE_Z), LGUI_T(KC_X), LT(6, KC_C), LT(2, KC_D), KC_V,
-              KC_K, LT(2, KC_H), LT(6, KC_COMM), KC_DOT, KC_AMPR,
-            OSL(1), OSM(MOD_LSFT),
-              KC_SPC, KC_BSPC),
+            KC_Q,         LT(7,KC_W),   LT(5, KC_F),  KC_P,        KC_B,            KC_J,   KC_L,        LT(5, KC_U),    LT(7, DE_Y),  DE_UNDS,
+            LALT_T(KC_A), LCTL_T(KC_R), LSFT_T(KC_S), LT(4,KC_T),  KC_G,            KC_M,   LT(4,KC_N),  LSFT_T(KC_E),   LCTL_T(KC_I), LALT_T(KC_O),
+            LT(8, DE_Z),  LGUI_T(KC_X), LT(6, KC_C),  LT(2, KC_D), KC_V,            KC_K,   LT(2, KC_H), LT(6, KC_COMM), KC_DOT,       KC_AMPR,
+                                                      OSL(1),      OSM(MOD_LSFT),   KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
-            DE_SS,          DE_UDIA,          DE_ODIA,          DE_ADIA, KC_NO,
-              KC_NO, KC_TAB,         DE_LPRN,        DE_LCBR,        DE_LBRC,
-            LALT_T(DE_EQL),        LCTL_T(DE_HASH),        DE_PERC,        DE_COLN, DE_TILD,
-              KC_NO, KC_ESCAPE,      DE_LABK,        DE_DQUO,        DE_QUES,
-            DE_ASTR,        DE_PIPE,        DE_AMPR,        DE_AT, DE_BSLS,
-               KC_NO,DE_EURO,        DE_CIRC,        DE_ACUT,        DE_MINS,
-
-            KC_NO, KC_NO, KC_ENTER,       KC_DELETE),
+            DE_SS,          DE_UDIA,         DE_ODIA, DE_ADIA, DE_TILD,   KC_NO,    KC_TAB,    DE_LPRN, DE_LCBR, DE_LBRC,
+            LALT_T(DE_EQL), LCTL_T(DE_HASH), DE_PERC, DE_COLN, DE_SCLN,   KC_NO,    KC_ESCAPE, DE_LABK, DE_DQUO, DE_QUES,
+            DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,   KC_NO,    DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
+                                                      KC_NO,   KC_NO,     KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
             KC_NO,          LSFT(DE_UDIA),          LSFT(DE_ODIA),          LSFT(DE_ADIA), KC_NO,
               KC_NO, LSFT(KC_TAB),         DE_RPRN,        DE_RCBR,        DE_RBRC,
