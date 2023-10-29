@@ -118,6 +118,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
     break;
+    case LT(11, DE_SCLN):
+    if (record->tap.count && record->event.pressed) {
+      tap_code16(DE_SCLN);
+      return false;
+    }
+    break;
   }
   switch (keycode) {
     case ST_MACRO_0:
