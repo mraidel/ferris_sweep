@@ -108,6 +108,7 @@ enum custom_keycodes {
   ST_MACRO_34,
   ST_MACRO_35,
   ST_MACRO_36,
+  ST_MACRO_37,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -148,7 +149,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT("<") SS_DELAY(100) SS_TAP(X_LEFT));
+        tap_code16(DE_RABK);
+        wait_ms(100);
+        tap_code(KC_LEFT);
     }
     break;
     case ST_MACRO_5:
@@ -311,6 +314,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_LCTL(SS_TAP(X_W)) SS_DELAY(100) SS_TAP(X_O));
     }
     break;
+    case ST_MACRO_37:
+    if (record->event.pressed) {
+        tap_code16(DE_GRV);
+        wait_ms(100);
+        tap_code(KC_LEFT);
+    }
+    break;
 
     }
   return true;
@@ -323,6 +333,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DE_LBRC: return ST_MACRO_3;
         case DE_LABK: return ST_MACRO_4;
         case DE_DQUO: return ST_MACRO_5;
+        case DE_GRV: return ST_MACRO_37;
     }
 
     return KC_TRNS;  // Defer to default definitions.
@@ -361,11 +372,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,            KC_NO,    DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
                                                       KC_NO,   KC_NO,              KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
-            KC_NO, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,   KC_NO, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
-            KC_NO, KC_NO,         KC_NO,         KC_NO,         MO(11),   KC_NO, KC_NO,        DE_RABK, DE_QUOT, DE_EXLM,
+            KC_NO, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,   QK_ALT_REPEAT_KEY, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
+            KC_NO, KC_NO,         KC_NO,         KC_NO,         MO(11),   QK_REPEAT_KEY, KC_NO,        DE_RABK, DE_QUOT, DE_EXLM,
             KC_NO, KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO, KC_NO,        DE_DLR,  DE_GRV,  DE_PLUS,
                                                  KC_NO,         KC_NO,   LSFT(KC_ENTER),      KC_DELETE),
-	[3] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UNDS, KC_PIPE, KC_QUOT, KC_TRNS, KC_CIRC, KC_ASTR, KC_AMPR, KC_NO, KC_TRNS, KC_HASH, KC_TILD, KC_SLSH, KC_DQUO, KC_DLR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_BSLS, KC_GRV, KC_TRNS, RGB_RMOD, KC_TRNS, KC_TRNS, RGB_MOD),
 	[4] = LAYOUT_split_3x5_2(
             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_HOME,             KC_PGUP,     KC_PGDN,       KC_END,
             KC_NO,   KC_LCTL, KC_LSFT, KC_NO,   MO(11),  KC_NO,   KC_LEFT,             KC_UP,       KC_DOWN,       KC_RIGHT,
