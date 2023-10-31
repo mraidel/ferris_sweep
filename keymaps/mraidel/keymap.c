@@ -334,6 +334,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DE_LABK: return ST_MACRO_4;
         case DE_DQUO: return ST_MACRO_5;
         case DE_GRV: return ST_MACRO_37;
+        case LT(5, KC_U): return LCTL(KC_R);
     }
 
     return KC_TRNS;  // Defer to default definitions.
