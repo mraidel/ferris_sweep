@@ -148,12 +148,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_4:
     if (record->event.pressed) {
-      //SEND_STRING(SS_TAP(X_NONUS_BSLASH) SS_DELAY(100) SS_LSFT(SS_TAP(X_NONUS_BSLASH)) SS_DELAY(100) SS_TAP(X_LEFT));
+      SEND_STRING(SS_LSFT("<") SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
     case ST_MACRO_5:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_2)) SS_DELAY(100) SS_LSFT(SS_TAP(X_2)) SS_DELAY(100) SS_TAP(X_LEFT));
+      SEND_STRING(SS_LSFT(SS_TAP(X_2)) SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
     case ST_MACRO_6:
@@ -321,6 +321,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DE_LPRN: return ST_MACRO_1;
         case DE_LCBR: return ST_MACRO_2;
         case DE_LBRC: return ST_MACRO_3;
+        case DE_LABK: return ST_MACRO_4;
+        case DE_DQUO: return ST_MACRO_5;
     }
 
     return KC_TRNS;  // Defer to default definitions.
