@@ -133,17 +133,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_8)) SS_DELAY(100) SS_LSFT(SS_TAP(X_9)) SS_DELAY(100) SS_TAP(X_LEFT));
+      SEND_STRING(SS_LSFT(SS_TAP(X_9)) SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
     case ST_MACRO_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_RALT(SS_TAP(X_7)) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_RALT(SS_TAP(X_0)) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT));
+      SEND_STRING(SS_RALT(SS_TAP(X_0)) SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_RALT(SS_TAP(X_8)) SS_DELAY(100) SS_RALT(SS_TAP(X_9)) SS_DELAY(100) SS_TAP(X_LEFT));
+      SEND_STRING(SS_RALT(SS_TAP(X_9)) SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
     case ST_MACRO_4:
@@ -316,6 +316,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case DE_LPRN: return ST_MACRO_1;
+        case DE_LCBR: return ST_MACRO_2;
+        case DE_LBRC: return ST_MACRO_3;
+    }
+
+    return KC_TRNS;  // Defer to default definitions.
+}
+
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -344,10 +354,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             LT(12, DE_Z), LGUI_T(KC_X), KC_C,         LT(2, KC_D), KC_V,            KC_K,   LT(2, KC_H), KC_COMM,        KC_DOT,       KC_AMPR,
                                                       OSL(1),      OSM(MOD_LSFT),   KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
-            DE_SS,          DE_UDIA,         DE_ODIA, DE_ADIA, DE_TILD,   KC_NO,    KC_TAB,    DE_LPRN, DE_LCBR, DE_LBRC,
-            LALT_T(DE_EQL), LCTL_T(DE_HASH), DE_PERC, DE_COLN, LT(11, DE_SCLN),   KC_NO,    KC_ESCAPE, DE_LABK, DE_DQUO, DE_QUES,
-            DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,   KC_NO,    DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
-                                                      KC_NO,   KC_NO,     KC_ENTER, KC_DELETE),
+            DE_SS,          DE_UDIA,         DE_ODIA, DE_ADIA, DE_TILD,            QK_ALT_REPEAT_KEY,    KC_TAB,    DE_LPRN, DE_LCBR, DE_LBRC,
+            LALT_T(DE_EQL), LCTL_T(DE_HASH), DE_PERC, DE_COLN, LT(11, DE_SCLN),    QK_REPEAT_KEY,    KC_ESCAPE, DE_LABK, DE_DQUO, DE_QUES,
+            DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,            KC_NO,    DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
+                                                      KC_NO,   KC_NO,              KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
             KC_NO, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,   KC_NO, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
             KC_NO, KC_NO,         KC_NO,         KC_NO,         MO(11),   KC_NO, KC_NO,        DE_RABK, DE_QUOT, DE_EXLM,
