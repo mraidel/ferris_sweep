@@ -52,24 +52,6 @@ void housekeeping_task_user(void) {
     }
 }
 
-enum {
-    TD_7_SLSH,
-    TD_8_ASTR,
-    TD_9_MINS,
-    TD_6_PLUS,
-    TD_3_EQL,
-    TD_2_COMM,
-};
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_7_SLSH] = ACTION_TAP_DANCE_DOUBLE(KC_7, DE_SLSH),
-    [TD_8_ASTR] = ACTION_TAP_DANCE_DOUBLE(KC_8, DE_ASTR),
-    [TD_9_MINS] = ACTION_TAP_DANCE_DOUBLE(KC_9, DE_MINS),
-    [TD_6_PLUS] = ACTION_TAP_DANCE_DOUBLE(KC_6, DE_PLUS),
-    [TD_3_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_3, DE_EQL),
-    [TD_2_COMM] = ACTION_TAP_DANCE_DOUBLE(KC_2, DE_COMM),
-};
-
 enum custom_keycodes {
   ST_MACRO_0 = SAFE_RANGE,
   ST_MACRO_1,
@@ -111,8 +93,76 @@ enum custom_keycodes {
   ST_MACRO_37,
 };
 
+
+typedef struct {
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t held;
+} tap_dance_tap_hold_t;
+
+void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (state->pressed) {
+        if (state->count == 1
+#ifndef PERMISSIVE_HOLD
+            && !state->interrupted
+#endif
+        ) {
+            register_code16(tap_hold->hold);
+            tap_hold->held = tap_hold->hold;
+        } else {
+            register_code16(tap_hold->tap);
+            tap_hold->held = tap_hold->tap;
+        }
+    }
+}
+
+void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (tap_hold->held) {
+        unregister_code16(tap_hold->held);
+        tap_hold->held = 0;
+    }
+}
+
+#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
+enum {
+    TD_7_SLSH,
+    TD_8_ASTR,
+    TD_9_MINS,
+    TD_6_PLUS,
+    TD_3_EQL,
+    TD_2_COMM,
+};
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_7_SLSH] = ACTION_TAP_DANCE_TAP_HOLD(KC_7, DE_SLSH),
+    [TD_8_ASTR] = ACTION_TAP_DANCE_TAP_HOLD(KC_8, DE_ASTR),
+    [TD_9_MINS] = ACTION_TAP_DANCE_TAP_HOLD(KC_9, DE_MINS),
+    [TD_6_PLUS] = ACTION_TAP_DANCE_TAP_HOLD(KC_6, DE_PLUS),
+    [TD_3_EQL] = ACTION_TAP_DANCE_TAP_HOLD(KC_3, DE_EQL),
+    [TD_2_COMM] = ACTION_TAP_DANCE_TAP_HOLD(KC_2, DE_COMM),
+};
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    tap_dance_action_t *action;
+
   switch (keycode) {
+        case TD(TD_7_SLSH):
+        case TD(TD_8_ASTR):
+        case TD(TD_9_MINS):
+        case TD(TD_6_PLUS):
+        case TD(TD_3_EQL):
+        case TD(TD_2_COMM):
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
     case LALT_T(DE_EQL):
     if (record->tap.count && record->event.pressed) {
       tap_code16(DE_EQL);
@@ -383,10 +433,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS, KC_NO,   KC_NO,   KC_LGUI, KC_TAB,  KC_TRNS, LGUI(LSFT(KC_LEFT)), LGUI(KC_UP), LGUI(KC_DOWN), LGUI(LSFT(KC_RIGHT)),
                                        KC_VOLD, KC_TRNS, KC_TRNS, KC_VOLU),
 	[5] = LAYOUT_split_3x5_2(
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,   TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
-            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, MO(11),    KC_TRNS, KC_4,          KC_5,          TD(TD_6_PLUS), DE_DOT,
-            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,   KC_1,          TD(TD_2_COMM), TD(TD_3_EQL),  KC_COMM,
-                                       KC_TRNS, KC_TRNS,   KC_0,    KC_TRNS
+            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   LSFT(KC_G),  TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
+            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, MO(11),    ST_MACRO_20, KC_4,          KC_5,          TD(TD_6_PLUS), DE_DOT,
+            KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,       KC_1,          TD(TD_2_COMM), TD(TD_3_EQL),  KC_COMM,
+                                       KC_TRNS, KC_TRNS,   KC_0,        KC_TRNS
             ),
 	[6] = LAYOUT_split_3x5_2(
             KC_NO,       LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,         ST_MACRO_26 , ST_MACRO_27, ST_MACRO_28, ST_MACRO_29, KC_NO,
