@@ -445,15 +445,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                        KC_NO,         KC_NO,         KC_ENTER,     KC_DELETE),
 	[7] = LAYOUT_split_3x5_2(
             KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, KC_NO,      KC_NO, KC_MS_BTN1,   KC_MS_BTN3,  KC_MS_BTN2,    KC_NO,
-            KC_NO,               KC_AUDIO_MUTE, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,     MO(11),    KC_NO, KC_MS_LEFT,   KC_MS_UP,    KC_MS_DOWN,    KC_MS_RIGHT,
-            KC_NO,               KC_NO,         KC_NO,               KC_NO,               KC_NO,      KC_NO, KC_MS_ACCEL0, KC_MS_WH_UP, KC_MS_WH_DOWN, KC_NO,
+            KC_C,               KC_AUDIO_MUTE, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,     MO(11),    KC_NO, KC_MS_LEFT,   KC_MS_UP,    KC_MS_DOWN,    KC_MS_RIGHT,
+            KC_J,               KC_LEFT,         KC_RIGHT,               KC_L,               KC_F,      KC_NO, KC_MS_ACCEL0, KC_MS_WH_UP, KC_MS_WH_DOWN, KC_NO,
                                                                      KC_MS_ACCEL2,        KC_NO,      KC_NO, KC_NO
             ),
 
 	[11] = LAYOUT_split_3x5_2(
-            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO, KC_NO,        TO(7),        TO(8),        TO(9), KC_NO,
+            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO, KC_NO,        TO(7),        KC_NO,        KC_NO, KC_NO,
             KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO, KC_NO,        TO(4),        TO(5),        TO(6), KC_NO,
-            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO, KC_NO,        TO(1),        TO(2),        TO(3), KC_NO,
+            KC_NO,        KC_NO,        KC_NO,        KC_NO, KC_NO, KC_NO,        TO(1),        TO(2),        KC_NO, KC_NO,
             KC_NO, KC_NO, TO(0),       KC_NO),
 
 	[12] = LAYOUT_split_3x5_2(
