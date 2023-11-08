@@ -80,12 +80,12 @@ enum custom_keycodes {
   ST_MACRO_24,
   ST_MACRO_25,
   ST_MACRO_26,
-  ST_MACRO_27,
-  ST_MACRO_28,
+  MA_VIM_SAVE,
+  MA_VIM_WQ,
   ST_MACRO_29,
   ST_MACRO_30,
-  ST_MACRO_31,
-  ST_MACRO_32,
+  MA_VIM_COM,
+  MA_VIM_CLOSE,
   ST_MACRO_33,
   ST_MACRO_34,
   ST_MACRO_35,
@@ -314,12 +314,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_LCTL(SS_TAP(X_A)) SS_DELAY(100) SS_TAP(X_PGUP));
     }
     break;
-    case ST_MACRO_27:
+    case MA_VIM_SAVE:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_ESCAPE) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(100) SS_TAP(X_W) SS_DELAY(100) SS_TAP(X_ENTER));
     }
     break;
-    case ST_MACRO_28:
+    case MA_VIM_WQ:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_ESCAPE) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(100) SS_TAP(X_W) SS_DELAY(100) SS_TAP(X_Q)  SS_DELAY(100) SS_TAP(X_ENTER));
     }
@@ -334,12 +334,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_LSFT("2") SS_DELAY(100) "]");
     }
     break;
-    case ST_MACRO_31:
+    case MA_VIM_COM:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(100) SS_LSFT(SS_TAP(X_1)));
     }
     break;
-    case ST_MACRO_32:
+    case MA_VIM_CLOSE:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(100) SS_TAP(X_B) SS_DELAY(100) SS_TAP(X_W)  SS_DELAY(100) SS_TAP(X_ENTER));
     }
@@ -439,9 +439,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        KC_TRNS, KC_TRNS,   KC_0,        KC_TRNS
             ),
 	[6] = LAYOUT_split_3x5_2(
-            KC_NO,       LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,         ST_MACRO_26 , ST_MACRO_27, ST_MACRO_28, ST_MACRO_29, KC_NO,
-            ST_MACRO_21, ST_MACRO_22,   ST_MACRO_23,   ST_MACRO_24,   MO(11),         KC_NO,        ST_MACRO_30, ST_MACRO_31, ST_MACRO_32, ST_MACRO_33,
-            ST_MACRO_25, LALT(KC_F4),   KC_F5,         KC_F11,        LGUI(KC_D),    KC_NO,        ST_MACRO_34, ST_MACRO_35, ST_MACRO_36, KC_PRINT_SCREEN,
+            KC_NO,       LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), KC_NO,         ST_MACRO_26,  MA_VIM_SAVE,  MA_VIM_WQ,   ST_MACRO_29,  KC_NO,
+            ST_MACRO_21, ST_MACRO_22,   ST_MACRO_23,   ST_MACRO_24,   MO(11),        KC_NO,        ST_MACRO_30,  MA_VIM_COM,  MA_VIM_CLOSE, ST_MACRO_33,
+            ST_MACRO_25, LALT(KC_F4),   KC_F5,         KC_F11,        LGUI(KC_D),    KC_NO,        ST_MACRO_34,  ST_MACRO_35, ST_MACRO_36,  KC_PRINT_SCREEN,
                                                        KC_NO,         KC_NO,         KC_ENTER,     KC_DELETE),
 	[7] = LAYOUT_split_3x5_2(
             KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, KC_NO,      KC_NO, KC_MS_BTN1,   KC_MS_BTN3,  KC_MS_BTN2,    KC_NO,
