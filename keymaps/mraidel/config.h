@@ -63,3 +63,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
 #define SPLIT_LAYER_STATE_ENABLE
+
+#define LEADER_TIMEOUT 500
+#define LEADER_PER_KEY_TIMING

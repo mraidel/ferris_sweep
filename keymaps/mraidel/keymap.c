@@ -168,6 +168,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
     break;
+    case LGUI_T(DE_PIPE):
+    if (record->tap.count && record->event.pressed) {
+      tap_code16(DE_PIPE);
+      return false;
+    }
+    case LSFT_T(KC_PERC):
+    if (record->tap.count && record->event.pressed) {
+      tap_code16(KC_PERC);
+      return false;
+    }
+    break;
     case LT(11, DE_SCLN):
     if (record->tap.count && record->event.pressed) {
       tap_code16(DE_SCLN);
@@ -226,7 +237,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_8:
     if (record->event.pressed) {
-      SEND_STRING(SS_LCTL(SS_TAP(X_A)) SS_DELAY(100) SS_LCTL(SS_TAP(X_A)));
+      SEND_STRING(SS_LCTL(SS_TAP(X_A)) SS_DELAY(100) SS_TAP(X_L));
     }
     break;
     case ST_MACRO_9:
@@ -416,13 +427,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       OSL(1),      OSM(MOD_LSFT),   KC_SPC, KC_BSPC),
 	[1] = LAYOUT_split_3x5_2(
             DE_SS,          DE_UDIA,         DE_ODIA, DE_ADIA, DE_TILD,            QK_ALT_REPEAT_KEY,  KC_TAB,    DE_LPRN, DE_LCBR, DE_LBRC,
-            LALT_T(DE_EQL), LCTL_T(DE_HASH), DE_PERC, DE_COLN, LT(11, DE_SCLN),    QK_REPEAT_KEY,      KC_ESCAPE, DE_LABK, DE_DQUO, DE_QUES,
-            DE_ASTR,        DE_PIPE,         DE_AMPR, DE_AT,   DE_BSLS,            _____,              DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
+            LALT_T(DE_EQL), LCTL_T(DE_HASH), LSFT_T(KC_PERC), DE_COLN, LT(11, DE_SCLN),    QK_REPEAT_KEY,      KC_ESCAPE, DE_LABK, DE_DQUO, DE_QUES,
+            DE_ASTR,        LGUI_T(DE_PIPE),         DE_AMPR, DE_AT,   DE_BSLS,            QK_LEAD,            DE_EURO,   DE_CIRC, DE_ACUT, DE_MINS,
                                                       _____,   _____,              KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
             _____, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), _____,   QK_ALT_REPEAT_KEY, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
             _____, _____,         _____,         _____,         MO(11),  QK_REPEAT_KEY,     _____,        DE_RABK, DE_QUOT, DE_EXLM,
-            _____, _____,         _____,         _____,         _____,   _____, _____,      DE_DLR,       DE_GRV,  DE_PLUS,
+            _____, _____,         _____,         _____,         _____,   _____,           _____,        DE_DLR,  DE_GRV,  DE_PLUS,
                                                  _____,         _____,   LSFT(KC_ENTER),    KC_DELETE),
 	[4] = LAYOUT_split_3x5_2(
             _____,   _____,   _____,   _____,   _____,   _____,   KC_HOME,             KC_PGUP,     KC_PGDN,       KC_END,
@@ -433,7 +444,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS,     ST_MACRO_7,     ST_MACRO_8,     ST_MACRO_9,     KC_TRNS,               LSFT(KC_G),    TD(TD_7_SLSH), TD(TD_8_ASTR), TD(TD_9_MINS), DE_COLN,
             ST_MACRO_10, ST_MACRO_11,    ST_MACRO_12,    ST_MACRO_13,    LT(11, ST_MACRO_14),   ST_MACRO_20,   KC_4,          KC_5,          TD(TD_6_PLUS), DE_DOT,
             ST_MACRO_15, ST_MACRO_16,    ST_MACRO_17,    ST_MACRO_18,    ST_MACRO_19,           _____,         KC_1,          TD(TD_2_COMM), TD(TD_3_EQL),  KC_COMM,
-                                                         KC_TRNS,        KC_TRNS,               KC_0,          KC_TRNS
+                                                         KC_TRNS,        KC_TRNS,               KC_0,          KC_BSPC
             ),
 	[6] = LAYOUT_split_3x5_2(
             _____,       LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), _____,         ST_MACRO_26,  MA_VIM_SAVE,  MA_VIM_WQ,   ST_MACRO_29,  _____,
