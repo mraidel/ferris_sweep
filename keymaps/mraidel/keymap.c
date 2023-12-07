@@ -173,6 +173,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code16(DE_PIPE);
       return false;
     }
+    break;
     case LSFT_T(KC_PERC):
     if (record->tap.count && record->event.pressed) {
       tap_code16(KC_PERC);
