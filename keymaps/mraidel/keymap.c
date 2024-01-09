@@ -418,6 +418,34 @@ bool caps_word_press_user(uint16_t keycode) {
     }
 }
 
+void leader_end_user(void) {
+    if (leader_sequence_two_keys(KC_G, KC_C)) {
+        SEND_STRING("GlobalConfig");
+        tap_code16(DE_COLN);
+        tap_code16(DE_COLN);
+        set_oneshot_mods(MOD_LSFT);
+    } else if (leader_sequence_two_keys(KC_P, KC_I)) {
+        SEND_STRING("ProductImport");
+        tap_code16(DE_COLN);
+        tap_code16(DE_COLN);
+        set_oneshot_mods(MOD_LSFT);
+    } else if (leader_sequence_two_keys(KC_I, KC_N)) {
+        SEND_STRING("I18n");
+    } else if (leader_sequence_two_keys(KC_A, KC_C)) {
+        SEND_STRING("ApplicationConfiguration");
+    } else if (leader_sequence_two_keys(KC_M, KC_P)) {
+        SEND_STRING("MountPoints");
+        tap_code16(DE_COLN);
+        tap_code16(DE_COLN);
+        set_oneshot_mods(MOD_LSFT);
+    } else if (leader_sequence_two_keys(KC_P, KC_V)) {
+        SEND_STRING("Bills");
+        tap_code16(DE_COLN);
+        tap_code16(DE_COLN);
+        SEND_STRING("PlatformToVendor");
+    }
+}
+
 #define _____ KC_NO
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -433,7 +461,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       _____,   _____,              KC_ENTER, KC_DELETE),
 	[2] = LAYOUT_split_3x5_2(
             _____, LSFT(DE_UDIA), LSFT(DE_ODIA), LSFT(DE_ADIA), _____,   QK_ALT_REPEAT_KEY, LSFT(KC_TAB), DE_RPRN, DE_RCBR, DE_RBRC,
-            _____, _____,         _____,         _____,         MO(11),  QK_REPEAT_KEY,     _____,        DE_RABK, DE_QUOT, DE_EXLM,
+            KC_LALT, KC_LCTL,       KC_LSFT,         _____,         MO(11),  QK_REPEAT_KEY,     _____,        DE_RABK, DE_QUOT, DE_EXLM,
             _____, _____,         _____,         _____,         _____,   _____,           _____,        DE_DLR,  DE_GRV,  DE_PLUS,
                                                  _____,         _____,   LSFT(KC_ENTER),    KC_DELETE),
 	[4] = LAYOUT_split_3x5_2(
